@@ -1,5 +1,23 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Bold.woff2') format('woff2'),
+        url('Roboto-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nixie One';
+    src: url('fonts/NixieOne.woff2') format('woff2'),
+        url('fonts/NixieOne.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 html {
-  font-family: sans-serif;
+  font-family: 'Nixie One', sans-serif;
 }
 
 table {
