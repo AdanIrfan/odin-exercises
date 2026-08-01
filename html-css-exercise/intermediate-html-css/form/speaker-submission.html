@@ -9,11 +9,54 @@
     <body>
         <header class = "speaker-form-header">
             <h1>Speaker Submission</h1>
-            <p><em>Want to speak at our fake comference? Fill out this form.</em></p>
+            <p><em>Want to speak at our fake conference? Fill out this form.</em></p>
         </header>
 
         <form action = "" method = "get" class = "speaker-form">
-            
+            <div>
+                <label for = "name">Name: *</label>
+                <input type = "text" id = "name" name = "user-name" required>
+                
+            </div>
+            <div>
+                <label for = "email">Email: *</label>
+                <input type = "email" id = "email" name = "user-email" placeholder = "abc@gmail.com" required>
+            </div>
+            <div>
+                <ul>
+                    <legend>Type of talk</legend>
+                    <li>
+                        <label for = "talk-type">
+                            <input id = "talk-type" name = "conference" type = "radio" checked>Main Stage
+                        </label>
+                    </li>
+                    <li>
+                        <label for = "talk-type">
+                            <input id = "talk-type" name = "conference" type = "radio">Workshop
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <legend for = "tshirt-size">T-shirt size</legend>
+                <select for = "tshirt-size">
+                    <option id = "tshirt-size" name = "shirt-size" value = "extra small">Extra Small</option>
+                    <option id = "tshirt-size" name = "shirt-size" value = "small">Small</option>
+                    <option id = "tshirt-size" name = "shirt-size" value = "medium">Medium</option>
+                </select>
+            </div>
+            <div>
+                <legend for = "abstract">Abstract</legend>
+                <textarea id = "abstract" row = "100" column = "100"></textarea>
+            </div>
+            <div>
+                <label for = "availability">
+                <input type = "radio" id = "availability" name = "user-availability">
+                    I am actually available for the talk</label>
+            </div>
+            <div>
+                <button type = "submit">submit</button>
+            </div>
         </form>
     </body>
 </html>
