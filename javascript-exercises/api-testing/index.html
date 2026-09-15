@@ -6,17 +6,39 @@
   </head>
   <body>
     <img src="#" />
+    <button type="button" id="change">change</button>
+    <input type="text" name="search" placeholder="Search for a GIF" />
+    <button type="button" id="search">Search</button>
     <script>
       const img = document.querySelector("img");
-      fetch(
-        "https://api.giphy.com/v1/gifs/translate?api_key=5hIQ4rzAAxPjQzMdqxo1pGQS6KLp5sc8&s=cats&rating=g",
-      )
-        .then((response) => {
-          return response.json();
-        })
-        .then((response) => {
-          img.src = response.data.images.original.url;
-        });
+      const searchBtn = document.getElementById("search");
+      function fetchImage(search = "cat") {
+        const link = `https://api.giphy.com/v1/gifs/translate?api_key=5hIQ4rzAAxPjQzMdqxo1pGQS6KLp5sc8&s=${encodeURIComponent(search)}&rating=g`;
+
+        fetch(link)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Giphy not available");
+            }
+            return response.json();
+          })
+          .then((response) => {
+            img.src = response.data.images.original.url;
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      }
+      searchBtn.addEventListener("click", () => {
+        const input = document.querySelector("input").value.trim();
+        if (input !== "") {
+          fetchImage(input);
+        }
+      });
+
+      fetchImage();
+      const changeBtn = document.getElementById("change");
+      changeBtn.addEventListener("click", fetchImage);
     </script>
   </body>
 </html>
