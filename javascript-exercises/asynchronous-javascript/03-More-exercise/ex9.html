@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github User Finder</title>
+  </head>
+  <body>
+    <label for="name">Name(github):</label>
+    <input type="text" id="name" name="name" />
+    <button type="button">Search</button>
+
+    <img id="profileImg" alt="image not available" height="1000px" />
+    <h3 id="username"></h3>
+    <h3 id="profilename"></h3>
+    <p id="userbio"></p>
+    <ul id="repo"></ul>
+    <h6 id="followers"></h6>
+    <h6 id="following"></h6>
+    <a id="link">Account</a>
+
+    <script>
+      const searchBtn = document.querySelector("button");
+
+      async function getAccount(name) {
+        try {
+          const reponse = await fetch(`https://api.github.com/users/${name}`);
+          if (!reponse.ok) {
+            throw Error("HTTP bad request");
+          }
+
+          const account = await reponse.json();
+
+          const imgDiv = document.getElementById("profileImg");
+          const usernameDiv = document.getElementById("username");
+          const profilenameDiv = document.getElementById("profilename");
+          const bioDiv = document.getElementById("userbio");
+          const repolist = document.getElementById("repo");
+          const followersDiv = document.getElementById("followers");
+          const followingDiv = document.getElementById("following");
+          const linkDiv = document.getElementById("link");
+
+          imgDiv.src = account.avatar_url;
+          usernameDiv.textContent = account.login;
+          profilenameDiv.textContent = account.name;
+          bioDiv.textContent = account.bio;
+          followersDiv.textContent = account.followers;
+          followingDiv.textContent = account.following;
+          linkDiv.setAttribute("href", account.html_url);
+
+          const repoResponse = await fetch(
+            `https://api.github.com/users/${name}/repos`,
+          );
+          if (!repoResponse.ok) {
+            throw Error("HTTP bad request");
+          }
+          const repo = await repoResponse.json();
+
+          repo.forEach((rep) => {
+            const li = document.createElement("li");
+            li.textContent = rep.name;
+            repolist.appendChild(li);
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      searchBtn.addEventListener("click", () => {
+        const name = document.getElementById("name").value.trim();
+        getAccount(name);
+      });
+    </script>
+  </body>
+</html>
