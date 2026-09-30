@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        min-height: 100vh;
+      }
+      div {
+        border: 4px solid red;
+        width: 500px;
+        display: none;
+        opacity: 0;
+        padding: 20px;
+        margin: 10px;
+      }
+      div.fade-in {
+        display: block;
+        animation: 2s fade-in ease-in forwards;
+      }
+      div.fade-out {
+        animation: 2s fade-out ease-out forwards;
+      }
+
+      @keyframes fade-in {
+        from {
+          display: none;
+          opacity: 0;
+        }
+        to {
+          display: block;
+          opacity: 1;
+        }
+      }
+
+      @keyframes fade-out {
+        from {
+          display: block;
+          opacity: 1;
+        }
+        to {
+          display: none;
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      Click anywhere on the screen or press any key to toggle the
+      <code>&lt;div&gt;</code> between hidden and showing.
+    </p>
+
+    <div>
+      This is a <code>&lt;div&gt;</code> element that animates between
+      <code>display: none; opacity: 0</code> and
+      <code>display: block; opacity: 1</code>. Neat, huh?
+    </div>
+
+    <p>
+      This is another paragraph to show that <code>display: none;</code> is
+      being applied and removed on the above <code>&lt;div&gt; </code>. If only
+      its <code>opacity</code> was being changed, it would always take up the
+      space in the DOM.
+    </p>
+    <script>
+      const div = document.querySelector("div");
+      const rootEle = document.querySelector(":root");
+      rootEle.addEventListener("click", hideDiv);
+      document.addEventListener("keydown", hideDiv);
+
+      function hideDiv() {
+        if (div.classList[0] === "fade-in") {
+          div.classList.remove("fade-in");
+          div.classList.add("fade-out");
+        } else {
+          div.classList.remove("fade-out");
+          div.classList.add("fade-in");
+        }
+      }
+    </script>
+  </body>
+</html>
