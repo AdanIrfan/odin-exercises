@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .slide-in {
+        animation-duration: 3s;
+        animation-name: slide-in;
+        animation-iteration-count: 3;
+        animation-direction: alternate;
+      }
+      @keyframes slide-in {
+        from {
+          translate: 0 0;
+        }
+        to {
+          translate: 300px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="watch-me">Watch me move</h1>
+    <p>
+      This example shows how to use CSS animations to make <code>H1</code>
+      elements move across the page.
+    </p>
+    <p>
+      In addition, we output some text each time an animation event fires, so
+      you can see them in action.
+    </p>
+    <ul id="output"></ul>
+    <script>
+      const heading = document.querySelector("h1");
+      heading.addEventListener("animationstart", listener);
+      heading.addEventListener("animationend", listener);
+      heading.addEventListener("animationiteration", listener);
+
+      heading.classList.add("slide-in");
+      function listener(event) {
+        const li = document.createElement("li");
+        switch (event.type) {
+          case "animationstart":
+            li.textContent = `Started: elapsed time is ${event.elapsedTime}`;
+            break;
+          case "animationend":
+            li.textContent = `Ended: elapsed time is ${event.elapsedTime}`;
+            break;
+          case "animationiteration":
+            li.textContent = `Iteration: elapsed time is ${event.elapsedTime}`;
+            break;
+        }
+        document.getElementById("output").appendChild(li);
+      }
+    </script>
+  </body>
+</html>
