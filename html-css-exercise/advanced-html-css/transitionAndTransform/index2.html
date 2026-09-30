@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        min-height: 100vh;
+      }
+      div {
+        font-size: 1.6rem;
+        width: 50%;
+        border: 5px solid red;
+        border-radius: 30px;
+        opacity: 0;
+        display: none;
+        transition:
+          opacity 300ms,
+          display 300ms allow-discrete;
+      }
+      .showing {
+        opacity: 1;
+        display: block;
+      }
+      @starting-style {
+        .showing {
+          opacity: 0;
+        }
+      }
+    </style>
+    <script defer>
+      const divEle = document.querySelector(".container");
+      const htmlEle = document.querySelector(":root");
+
+      document.addEventListener("click", showDiv);
+      document.addEventListener("keydown", showDiv);
+
+      function showDiv() {
+        divEle.classList.toggle("showing");
+      }
+    </script>
+  </head>
+  <body>
+    <p>
+      Click anywhere on the screen or press any key to toggle the
+      <code>&lt;div&gt;</code> between hidden and showing.
+    </p>
+
+    <div class="container">
+      This is a <code>&lt;div&gt;</code> element that transitions between
+      <code>display: none; opacity: 0</code> and
+      <code>display: block; opacity: 1</code>. Neat, huh?
+    </div>
+
+    <p>
+      This is another paragraph to show that <code>display: none;</code> is
+      being applied and removed on the above <code>&lt;div&gt; </code>. If only
+      its <code>opacity</code> was being changed, it would always take up the
+      space in the DOM.
+    </p>
+  </body>
+</html>
