@@ -4,17 +4,14 @@ const person = {
     backgroundColor: "black",
     color: "pink",
   },
+  url: "https://react.dev/images/docs/scientists/7vQD0fPs.jpg",
 };
 
 export default function Todolist() {
   return (
     <div style={person.theme}>
       <h1>{person.name}'s Todos</h1>
-      <img
-        className="avatar"
-        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
-        alt="Gregorio Y. Zara"
-      />
+      <img className="avatar" src={person.url} alt="Gregorio Y. Zara" />
       <ul>
         <li>Improve the videophone</li>
         <li>Prepare aeronautics lectures</li>
