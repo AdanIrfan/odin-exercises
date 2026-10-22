@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import Todolist from "./App.jsx";
+import Todolist from "./App2.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
