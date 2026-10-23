@@ -86,6 +86,46 @@
 //   );
 // }
 
+// passing through function as props variable
+
+// function Button({
+//   text = "Click Me!",
+//   color = "green",
+//   fontSize = 12,
+//   handleClick,
+// }) {
+//   const buttonStyle = {
+//     color: color,
+//     fontSize: fontSize + "px",
+//   };
+
+//   return (
+//     <button onClick={handleClick} style={buttonStyle}>
+//       {text}
+//     </button>
+//   );
+// }
+
+// export default function App() {
+//   function handleButtonClick() {
+//     window.location.href = "https://www.google.com";
+//   }
+//   return (
+//     <div>
+//       <Button handleClick={handleButtonClick} />
+//       <Button color="red" fontSize={14} handleClick={handleButtonClick} />
+//       <Button
+//         text="Hurry up!"
+//         color="yellow"
+//         fontSize={14}
+//         handleClick={handleButtonClick}
+//       />
+//     </div>
+//   );
+// }
+
+// using argument for different href link for the button
+
 function Button({
   text = "Click Me!",
   color = "green",
@@ -104,20 +144,37 @@ function Button({
   );
 }
 
-// passing through function as props variable
 export default function App() {
-  function handleButtonClick() {
-    window.location.href = "https://www.google.com";
+  function handleButtonClick(url) {
+    window.location.href = url;
   }
+
   return (
     <div>
-      <Button handleClick={handleButtonClick} />
-      <Button color="red" fontSize={14} handleClick={handleButtonClick} />
+      <Button
+        handleClick={() => {
+          handleButtonClick("https://www.google.com");
+        }}
+        fontSize={14}
+      />
+      <Button
+        color="red"
+        fontSize={14}
+        handleClick={() => {
+          handleButtonClick(
+            "https://react.dev/learn/passing-props-to-a-component",
+          );
+        }}
+      />
       <Button
         text="Hurry up!"
-        color="yellow"
+        color="purple"
         fontSize={14}
-        handleClick={handleButtonClick}
+        handleClick={() => {
+          handleButtonClick(
+            "https://www.theodinproject.com/lessons/node-path-react-new-passing-data-between-components",
+          );
+        }}
       />
     </div>
   );
