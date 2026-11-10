@@ -3,7 +3,9 @@ function Item({ name, isPacked }) {
   // return <li classNmae="item">{name} ✅</li>;
   // return null;
   // }
-  return <li className="item">{isPacked ? name + " ✅" : name}</li>;
+  return (
+    <li className="item">{isPacked ? <del>{name} + " ✅"</del> : name}</li>
+  );
 }
 
 export default function ParkingList() {
