@@ -20,7 +20,7 @@ function Item({ name, isPacked }) {
   return <li className="item">{itemContent}</li>;
 }
 
-export default function ParkingList() {
+export default function PackingList() {
   return (
     <section>
       <h1>Sally Ride's Packing List</h1>
