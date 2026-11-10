@@ -1,10 +1,16 @@
 function Item({ name, isPacked }) {
   // if (isPacked) {
-  // return <li classNmae="item">{name} ✅</li>;
+  // return <li className="item">{name} ✅</li>;
   // return null;
   // }
+  // return (
+  //   <li className="item">{isPacked ? <del>{name} + " ✅"</del> : name}</li>
+  // );
+
   return (
-    <li className="item">{isPacked ? <del>{name} + " ✅"</del> : name}</li>
+    <li className="item">
+      {name} {isPacked && " ✅"};
+    </li>
   );
 }
 
