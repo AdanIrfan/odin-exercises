@@ -19,3 +19,31 @@ export default function RecipeList() {
     </div>
   );
 }
+
+export function Recipe({ id, name, ingredients }) {
+  return (
+    <section>
+      <h2>{name}</h2>
+      <ul>
+        {ingredients.map((ingredient) => (
+          <li key={id}>{ingredient}</li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export function App() {
+  return (
+    <div>
+      <h1>Recipes</h1>
+      {recipes.map((recipe) => (
+        <Recipe
+          key={recipe.id}
+          name={recipe.name}
+          ingredients={recipe.ingredients}
+        />
+      ))}
+    </div>
+  );
+}
