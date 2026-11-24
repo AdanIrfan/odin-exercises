@@ -5,9 +5,11 @@ const COLORS = ['pink', 'green', 'blue', 'yellow', 'purple'];
 
 function App() {
   const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
+  const [colorCount, setColorCount] = useState(0);
 
   const onButtonClick = (color) => () => {
     setBackgroundColor(color);
+    setColorCount(colorCount + 1);
   };
 
   return (
@@ -17,6 +19,7 @@ function App() {
         backgroundColor,
       }}
     >
+      <h3>Color Count: {colorCount}</h3>
       {COLORS.map((color) => (
         <button
           type="button"
